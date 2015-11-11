@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import kellerbuch.fachlogik.Winzerbetrieb;
 import kellerbuch.gui.kunden.Kundenfenster;
-import kellerbuch.gui.rechnung.Rechnungsfenster;
+import kellerbuch.gui.rechnungen.Rechnungsfenster;
 import kellerbuch.gui.weine.Weinfenster;
 
 import java.awt.event.ActionListener;

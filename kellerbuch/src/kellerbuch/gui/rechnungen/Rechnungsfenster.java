@@ -1,4 +1,4 @@
-package kellerbuch.gui.rechnung;
+package kellerbuch.gui.rechnungen;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

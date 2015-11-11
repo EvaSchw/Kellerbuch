@@ -1,4 +1,4 @@
-package kellerbuch.gui.rechnung;
+package kellerbuch.gui.rechnungen;
 
 import java.awt.*;
 
