@@ -11,7 +11,7 @@ import kellerbuch.fachlogik.Rechnungspositionen;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 
-public class RechnungspositionsPanel extends JPanel {
+public class RechnungspositionenPanel extends JPanel {
 
 	/**
 	 * Create the panel.
@@ -22,12 +22,12 @@ public class RechnungspositionsPanel extends JPanel {
 	JSpinner spinner;
 	JComboBox<Weine> comboBox;
 	
-	public RechnungspositionsPanel(Winzerbetrieb wb) {
+	public RechnungspositionenPanel(Winzerbetrieb wb) {
 		this.wb = wb;
 		initPanel();
 	}
 
-	public RechnungspositionsPanel(Winzerbetrieb wb, Rechnungspositionen repos) {
+	public RechnungspositionenPanel(Winzerbetrieb wb, Rechnungspositionen repos) {
 		this.wb = wb;
 		initPanel();
 		comboBox.setSelectedItem(repos.getWein());
