@@ -114,6 +114,7 @@ public class Hauptfenster extends JFrame
 	protected void doWeineBearbeitenActionPerformed(ActionEvent e)
 	{
 		JDialog weineBearbeiten = new Weinfenster(betrieb);
+		weineBearbeiten.setLocationRelativeTo(null);
 		weineBearbeiten.setAlwaysOnTop(true);
 		weineBearbeiten.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		weineBearbeiten.setVisible(true);
@@ -122,6 +123,7 @@ public class Hauptfenster extends JFrame
 	protected void doKundenBearbeitenActionPerformed(ActionEvent arg0)
 	{
 		JDialog kundenBearbeiten = new Kundenfenster(betrieb);
+		kundenBearbeiten.setLocationRelativeTo(null);
 		kundenBearbeiten.setAlwaysOnTop(true);
 		kundenBearbeiten.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		kundenBearbeiten.setVisible(true);
@@ -130,6 +132,7 @@ public class Hauptfenster extends JFrame
 	protected void doRechnungErstellenActionPerformed(ActionEvent e)
 	{
 		JDialog rechnungErstellen = new Rechnungsfenster(betrieb);
+		rechnungErstellen.setLocationRelativeTo(null);
 		rechnungErstellen.setAlwaysOnTop(true);
 		rechnungErstellen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		rechnungErstellen.setVisible(true);
