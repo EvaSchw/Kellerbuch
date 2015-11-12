@@ -19,6 +19,7 @@ public class Start
 			SimpleDateFormat sdf = new SimpleDateFormat("d.M.y");
 			Date d1 = sdf.parse("1.1.2015");
 			Date d2 = sdf.parse("25.2.2015");
+			Date d3 = sdf.parse("25.2.2015");
 			
 			Winzerbetrieb wb = new Winzerbetrieb();
 			Weine w1 = new Weine("GV Alte Rebe", 2014, 12, true, "Kremstal", 0.75, 1000, 6.5);
