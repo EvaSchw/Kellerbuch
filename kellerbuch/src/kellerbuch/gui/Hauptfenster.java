@@ -114,7 +114,7 @@ public class Hauptfenster extends JFrame
 	protected void doWeineBearbeitenActionPerformed(ActionEvent e)
 	{
 		JDialog weineBearbeiten = new Weinfenster(betrieb);
-		weineBearbeiten.setLocationRelativeTo(null);
+		weineBearbeiten.setLocationRelativeTo(null); //mit null öffnet Fenster in der Mitte
 		weineBearbeiten.setAlwaysOnTop(true);
 		weineBearbeiten.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		weineBearbeiten.setVisible(true);

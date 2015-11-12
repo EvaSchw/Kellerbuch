@@ -142,7 +142,8 @@ public class Rechnungspanel extends JPanel
 		repaint();
 	}
 	
-	public void setRechnungsPositionen(List<Rechnungspositionen> positionen){
+	public void setRechnungsPositionen(List<Rechnungspositionen> positionen)
+	{
 		pnlRechungspositionen.removeAll();
 		for(Rechnungspositionen pos : positionen){
 			pnlRechungspositionen.add(new RechnungspositionenPanel(betrieb, pos));
