@@ -12,8 +12,10 @@ import kellerbuch.fachlogik.Winzerbetrieb;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.border.EmptyBorder;
 
 public class Rechnungspanel extends JPanel
 {
@@ -50,14 +52,9 @@ public class Rechnungspanel extends JPanel
 		pnlContent.setLayout(new BoxLayout(pnlContent, BoxLayout.PAGE_AXIS));
 		
 		JPanel pnlKunde = new JPanel();
+		pnlKunde.setBorder(new EmptyBorder(15, 0, 0, 0));
 		pnlContent.add(pnlKunde);
-		pnlKunde.setLayout(new GridLayout(6, 2, 0, 0));
-		
-		JLabel lblKunde = new JLabel("Kunde");
-		pnlKunde.add(lblKunde);
-		
-		JComboBox<Kunde> comboBox = new JComboBox<Kunde>(new Vector<Kunde>(betrieb.getKundenliste()));
-		pnlKunde.add(comboBox);
+		pnlKunde.setLayout(new GridLayout(5, 2, 0, 0));
 		
 		JLabel lblName = new JLabel("Name");
 		pnlKunde.add(lblName);
@@ -110,13 +107,12 @@ public class Rechnungspanel extends JPanel
 		pnlContent.add(pnlButtons);
 		
 		JButton btnNeueRechnung = new JButton("Neue Rechnung");
+		btnNeueRechnung.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doBtnNeueRechnungActionPerformed(e);
+			}
+		});
 		pnlButtons.add(btnNeueRechnung);
-		
-		JButton btnSpeichern = new JButton("Speichern");
-		pnlButtons.add(btnSpeichern);
-		
-		JButton btnNeueRechungsposition = new JButton("Neue Rechungsposition");
-		pnlButtons.add(btnNeueRechungsposition);
 	}
 
 	public Rechnung getRechnung()
@@ -145,8 +141,24 @@ public class Rechnungspanel extends JPanel
 	public void setRechnungsPositionen(List<Rechnungspositionen> positionen)
 	{
 		pnlRechungspositionen.removeAll();
+		int i = 0;
 		for(Rechnungspositionen pos : positionen){
-			pnlRechungspositionen.add(new RechnungspositionenPanel(betrieb, pos));
+			pnlRechungspositionen.add(new RechnungspositionenPanel(betrieb, pos, i));
+			i++;
+		}
+	}
+	
+	protected void doBtnNeueRechnungActionPerformed(ActionEvent e)
+	{
+		try
+		{
+			betrieb.rechnungAnlegen(new Rechnung(5, new Date(), new Kunde("", "Braun", "Hans", "Baumallee", "5", 6342, "Braunberg", "Österreich")));
+			rechnungsfenster.updateList();
+		}
+		catch (Exception e1)
+		{
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(this, e1.getMessage());
 		}
 	}
 }

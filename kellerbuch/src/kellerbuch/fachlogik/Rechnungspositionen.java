@@ -1,7 +1,5 @@
 package kellerbuch.fachlogik;
 
-import java.util.*;
-
 public class Rechnungspositionen
 {
 	Rechnung rechnung;
@@ -27,7 +25,8 @@ public class Rechnungspositionen
 		return rechnung;
 	}
 	
-	public void setRechnung(Rechnung rechnung){
+	public void setRechnung(Rechnung rechnung)
+	{
 		this.rechnung = rechnung;
 	}
 	public Weine getWein()

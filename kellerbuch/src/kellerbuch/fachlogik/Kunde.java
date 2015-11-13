@@ -38,7 +38,16 @@ public class Kunde
 	public String toString()
 	{
 		if(this.firma != null)
-			return "Firma " + firma;
+		{
+			if(this.firma.isEmpty())
+			{
+				return (nachname + " " + vorname);
+			}
+			else 
+			{
+				return "Firma " + firma;
+			}
+		}
 		else
 			return (nachname + " " + vorname);
 	}

@@ -69,4 +69,12 @@ public class Winzerbetrieb
 		else
 			throw new Exception("Kunde existiert nicht!");
 	}
+	
+	public void rechnungloeschen(Rechnung rechnung) throws Exception
+	{
+		if(rechnungsliste.contains(rechnung))
+			rechnungsliste.remove(rechnung);
+		else
+			throw new Exception("Rechnung existiert nicht!");
+	}
 }

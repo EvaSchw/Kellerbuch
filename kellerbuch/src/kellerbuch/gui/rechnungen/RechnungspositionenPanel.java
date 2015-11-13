@@ -1,65 +1,60 @@
 package kellerbuch.gui.rechnungen;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Vector;
 
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
+import javax.swing.*;
 
 import kellerbuch.fachlogik.Rechnungspositionen;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
+import javax.swing.border.MatteBorder;
 
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
-public class RechnungspositionenPanel extends JPanel {
-
-	/**
-	 * Create the panel.
-	 * 
-	 */
-
-	Winzerbetrieb wb;
-	JSpinner spinner;
-	JComboBox<Weine> comboBox;
-	private JTextField txtGesamtpreis;
+public class RechnungspositionenPanel extends JPanel
+{
+	private Winzerbetrieb wb;
+	private JLabel lblWein;
+	private JLabel lblMenge;
+	private JLabel lblGesamtpreis;
 
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public RechnungspositionenPanel(Winzerbetrieb wb) {
+	public RechnungspositionenPanel(Winzerbetrieb wb)
+	{
 		this.wb = wb;
 		initPanel();
 	}
 
-	public RechnungspositionenPanel(Winzerbetrieb wb, Rechnungspositionen repos) {
+	public RechnungspositionenPanel(Winzerbetrieb wb, Rechnungspositionen repos, int i)
+	{
 		this.wb = wb;
 		initPanel();
-		comboBox.setSelectedItem(repos.getWein());
-		spinner.setValue(new Integer(repos.getMenge()));
-		setGesamtpreis(comboBox, spinner);
+		lblWein.setText(repos.getWein().getBezeichnung());
+		lblMenge.setText(String.valueOf(repos.getMenge()));
+		setGesamtpreis(repos);
+		if(i != 0)
+			setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
 	}
 
-	private void setGesamtpreis(JComboBox<Weine> comboBox, JSpinner spinner) {
-		Weine w = (Weine) comboBox.getSelectedItem();
-		int anzahl = new Integer(spinner.getValue().toString());
-		double gesamtpreis = w.getPreis() * anzahl;
-		txtGesamtpreis.setText(Double.toString(gesamtpreis));
+	private void setGesamtpreis(Rechnungspositionen repos)
+	{
+		double preis = repos.getWein().getPreis();
+		int anzahl = repos.getMenge();
+		lblGesamtpreis.setText(Double.toString(preis * anzahl));
 	}
 
-	private void initPanel() {
+	private void initPanel()
+	{
 		setLayout(new GridLayout(0, 3, 0, 0));
-		comboBox = new JComboBox<Weine>(new Vector<Weine>(wb.getWeinliste()));
-		add(comboBox);
-		spinner = new JSpinner();
-		add(spinner);
-
-		txtGesamtpreis = new JTextField();
-		txtGesamtpreis.setHorizontalAlignment(SwingConstants.CENTER);
-		txtGesamtpreis.setEditable(false);
-		add(txtGesamtpreis);
-		txtGesamtpreis.setColumns(10);
+		lblWein = new JLabel();
+		add(lblWein);
+		lblMenge = new JLabel();
+		lblMenge.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblMenge);
+		lblGesamtpreis = new JLabel();
+		lblGesamtpreis.setHorizontalAlignment(SwingConstants.RIGHT);
+		add(lblGesamtpreis);
 	}
 }

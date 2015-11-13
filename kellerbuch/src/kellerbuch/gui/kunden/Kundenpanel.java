@@ -44,7 +44,7 @@ public class Kundenpanel extends JPanel
 
 	private void initPanel()
 	{
-		//ï¿½berschrift
+		//Überschrift
 		JLabel lblKundendaten = new JLabel("Kundendaten");
 		lblKundendaten.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblKundendaten.setHorizontalAlignment(SwingConstants.CENTER);
@@ -138,7 +138,7 @@ public class Kundenpanel extends JPanel
 			}
 		});
 		
-		//Button Lï¿½schen
+		//Button Löschen
 		btnLoeschen = new JButton("L\u00F6schen");
 		btnLoeschen.setBackground(new Color(255, 69, 0));
 		btnLoeschen.setBounds(400, 360, 97, 25);

@@ -23,7 +23,7 @@ public class Rechnungsfenster extends JDialog
 	{		
 		this.wb = betrieb;
 		
-		this.setTitle("Neue Rechnung");
+		this.setTitle("Alle Rechnungen");
 		this.setSize(800, 500);
 		
 		updateList();
