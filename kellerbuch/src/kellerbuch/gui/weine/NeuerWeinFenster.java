@@ -75,6 +75,7 @@ public class NeuerWeinFenster extends JDialog
 		getContentPane().add(lblLiter);
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0.25", "0.75", "1.00", "2.00"}));
+		comboBox.setSelectedItem("0.75");
 		getContentPane().add(comboBox);
 		
 		//Lagerstand
@@ -114,20 +115,24 @@ public class NeuerWeinFenster extends JDialog
 	{
 		String liter = (String) comboBox.getSelectedItem();
 		
-		try
-		{
-			wb.weineAnlegen(new Weine(txtBezeichnung.getText(), Integer.parseInt(txtJahrgang.getText()),
-					Integer.parseInt(txtAlkohol.getText()), ckbxQualitaetswein.isSelected(), txtLage.getText(),
-					Double.parseDouble(liter), Integer.parseInt(txtLagerstand.getText()),
-					Double.parseDouble(txtPreis.getText())));
-			wf.updateList();
-			this.dispose();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, e.getMessage());
-		}
+			try
+			{
+				wb.weineAnlegen(new Weine(txtBezeichnung.getText(), Integer.parseInt(txtJahrgang.getText()),
+						Integer.parseInt(txtAlkohol.getText()), ckbxQualitaetswein.isSelected(), txtLage.getText(),
+						Double.parseDouble(liter), Integer.parseInt(txtLagerstand.getText()),
+						Double.parseDouble(txtPreis.getText())));
+				wf.updateList();
+				this.dispose();
+			} catch (NumberFormatException e1)
+			{
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(this, "Bitte bei Jahrgang, Alkohol, Lagerstand und Preis überprüfen, "
+						+ "ob richtig eingetragen wurde!");
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, e.getMessage());
+			}
 	}
 	
 	protected void doAbbruchActionPerformed(ActionEvent arg0)

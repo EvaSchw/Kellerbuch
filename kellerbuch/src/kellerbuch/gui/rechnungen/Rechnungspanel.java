@@ -143,22 +143,15 @@ public class Rechnungspanel extends JPanel
 		pnlRechungspositionen.removeAll();
 		int i = 0;
 		for(Rechnungspositionen pos : positionen){
-			pnlRechungspositionen.add(new RechnungspositionenPanel(betrieb, pos, i));
+			pnlRechungspositionen.add(new RechnungspositionenPanel(pos, i));
 			i++;
 		}
 	}
 	
 	protected void doBtnNeueRechnungActionPerformed(ActionEvent e)
 	{
-		try
-		{
-			betrieb.rechnungAnlegen(new Rechnung(5, new Date(), new Kunde("", "Braun", "Hans", "Baumallee", "5", 6342, "Braunberg", "Österreich")));
-			rechnungsfenster.updateList();
-		}
-		catch (Exception e1)
-		{
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(this, e1.getMessage());
-		}
+		JDialog neueRechnung = new NeueRechnungFenster(betrieb, rechnungsfenster);
+		neueRechnung.setVisible(true);
+		neueRechnung.setAlwaysOnTop(true);
 	}
 }

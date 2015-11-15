@@ -8,6 +8,7 @@ import kellerbuch.fachlogik.Winzerbetrieb;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.jar.JarOutputStream;
 import java.awt.event.ActionEvent;
 
 public class NeuerKundeFenster extends JDialog
@@ -119,6 +120,11 @@ public class NeuerKundeFenster extends JDialog
 					txtStrasse.getText(), txtHausnr.getText(), Integer.valueOf(txtPlz.getText()), txtOrt.getText(), txtLand.getText()));
 			kf.updateList();
 			this.dispose();
+		}
+		catch (NumberFormatException e1)
+		{
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(this, "Bitte Eingabe beim Jahrgang überprüfen!");
 		}
 		catch (Exception e)
 		{
