@@ -34,85 +34,87 @@ public class Rechnungspanel extends JPanel
 	{
 		this.rechnungsfenster = rf;
 		this.betrieb = wb;
-		setSize(520, 400);
+		this.setSize(520, 400);
+		this.setLayout(new BorderLayout(0, 0));
 
 		initPanel();
 	}
 
 	private void initPanel()
 	{
-		setLayout(new BorderLayout(0, 0));
-		
+		//Überschrift
 		lblRechnungsinformationen = new JLabel("Rechungsinformationen");
 		lblRechnungsinformationen.setFont(new Font("Dialog", Font.BOLD, 18));
 		add(lblRechnungsinformationen, BorderLayout.NORTH);
 		
+		//Hauptpanel
 		JPanel pnlContent = new JPanel();
 		add(pnlContent, BorderLayout.CENTER);
 		pnlContent.setLayout(new BoxLayout(pnlContent, BoxLayout.PAGE_AXIS));
 		
+		//Kundenpanel
 		JPanel pnlKunde = new JPanel();
 		pnlKunde.setBorder(new EmptyBorder(15, 0, 0, 0));
 		pnlContent.add(pnlKunde);
 		pnlKunde.setLayout(new GridLayout(5, 2, 0, 0));
 		
+		//Kundenname
 		JLabel lblName = new JLabel("Name");
 		pnlKunde.add(lblName);
-		
 		txtName = new JTextField();
 		txtName.setEditable(false);
 		pnlKunde.add(txtName);
 		txtName.setColumns(10);
 		
+		//Kundenadresse
 		JLabel lblAdresse = new JLabel("Adresse");
 		pnlKunde.add(lblAdresse);
-		
 		txtAdresse = new JTextField();
 		txtAdresse.setEditable(false);
 		pnlKunde.add(txtAdresse);
 		txtAdresse.setColumns(10);
 		
+		//Kundenort
 		JLabel lblOrt = new JLabel("Ortschaft");
 		pnlKunde.add(lblOrt);
-		
 		txtOrt = new JTextField();
 		txtOrt.setEditable(false);
 		pnlKunde.add(txtOrt);
 		txtOrt.setColumns(10);
 		
+		//Rechnungsnummer
 		JLabel lblRechnungsnummer = new JLabel("Rechnungsnummer");
 		pnlKunde.add(lblRechnungsnummer);
-		
 		txtRechnungsnummer = new JTextField();
 		txtRechnungsnummer.setEditable(false);
 		pnlKunde.add(txtRechnungsnummer);
 		txtRechnungsnummer.setColumns(10);
 		
+		//Rechnungsdatum
 		JLabel lblRechnungsdatum = new JLabel("Rechnungsdatum");
 		pnlKunde.add(lblRechnungsdatum);
-		
 		txtRechnungsdatum = new JTextField();
 		txtRechnungsdatum.setEditable(false);
 		pnlKunde.add(txtRechnungsdatum);
 		txtRechnungsdatum.setColumns(10);
 		
+		//Rechnungspositionspanel
 		JScrollPane scrollPane = new JScrollPane();
 		pnlContent.add(scrollPane);
-		
 		pnlRechungspositionen = new JPanel();
 		scrollPane.setViewportView(pnlRechungspositionen);
 		pnlRechungspositionen.setLayout(new BoxLayout(pnlRechungspositionen, BoxLayout.PAGE_AXIS));
 		
+		//Buttonpanel
 		JPanel pnlButtons = new JPanel();
 		pnlContent.add(pnlButtons);
-		
 		JButton btnNeueRechnung = new JButton("Neue Rechnung");
+		pnlButtons.add(btnNeueRechnung);
 		btnNeueRechnung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				doBtnNeueRechnungActionPerformed(e);
 			}
 		});
-		pnlButtons.add(btnNeueRechnung);
 	}
 
 	public Rechnung getRechnung()

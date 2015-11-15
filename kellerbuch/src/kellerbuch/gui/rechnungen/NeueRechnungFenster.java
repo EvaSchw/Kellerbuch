@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 import kellerbuch.fachlogik.Kunde;
 import kellerbuch.fachlogik.Rechnung;
 import kellerbuch.fachlogik.Rechnungspositionen;
-import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 
 import java.awt.BorderLayout;
@@ -41,10 +40,17 @@ public class NeueRechnungFenster extends JDialog
 		setSize(600, 400);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
+		initFrame();
+	}
+	
+	public void initFrame()
+	{
+		//Gesamtpanel
 		JPanel pnlContent = new JPanel();
 		getContentPane().add(pnlContent, BorderLayout.CENTER);
 		pnlContent.setLayout(new BoxLayout(pnlContent, BoxLayout.PAGE_AXIS));
 		
+		//Kundenpanel
 		JPanel pnlKunde = new JPanel();
 		pnlKunde.setBorder(new EmptyBorder(15, 0, 0, 0));
 		pnlContent.add(pnlKunde);
@@ -53,32 +59,34 @@ public class NeueRechnungFenster extends JDialog
 		JLabel lblKunde = new JLabel("Kunde");
 		pnlKunde.add(lblKunde);
 		
+		//Combobox-Kunde
 		cBKunde = new JComboBox<Kunde>(new Vector<Kunde>(betrieb.getKundenliste()));
 		cBKunde.setSelectedItem(null);
 		pnlKunde.add(cBKunde);
 		
+		//Rechnungsnummer
 		JLabel lblRechnungsnr = new JLabel("Rechnungsnummer");
 		pnlKunde.add(lblRechnungsnr);
-		
 		txtRechnungsnr = new JTextField();
 		pnlKunde.add(txtRechnungsnr);
 		txtRechnungsnr.setColumns(10);
 		
+		//Rechnungsdatum
 		JLabel lblDatum = new JLabel("Rechnungsdatum (TT.MM.JJJJ)");
 		pnlKunde.add(lblDatum);
-		
 		txtDatum = new JTextField();
 		pnlKunde.add(txtDatum);
 		txtDatum.setColumns(10);
 		
+		//Rechnungspanel
 		JScrollPane scrollPane = new JScrollPane();
 		pnlContent.add(scrollPane);
-		
 		rechnungspospanel = new JPanel();
 		scrollPane.setViewportView(rechnungspospanel);
 		rechnungspospanel.setLayout(new GridLayout(0, 2, 0, 0));
 		rechnungspospanel.add(new NeueRechnungspositionenPanel(betrieb, 0));
 		
+		//Plus-Button
 		btnPlus = new ButtonRund("+");
 		btnPlus.setForeground(new Color(255, 255, 255));
 		btnPlus.setBackground(new Color(34, 139, 34));
@@ -90,6 +98,7 @@ public class NeueRechnungFenster extends JDialog
 			}
 		});
 		
+		//Buttonpanel
 		JPanel pnlButtons = new JPanel();
 		getContentPane().add(pnlButtons, BorderLayout.SOUTH);
 		btnSpeichern = new JButton("Speichern");
@@ -99,7 +108,6 @@ public class NeueRechnungFenster extends JDialog
 				doBtnSpeichernActionPerformed(arg0);
 			}
 		});
-		
 		btnAbbruch = new JButton("Abbruch");
 		pnlButtons.add(btnAbbruch);
 		btnAbbruch.addActionListener(new ActionListener() {
@@ -117,6 +125,7 @@ public class NeueRechnungFenster extends JDialog
 		revalidate();
 		repaint();
 	}
+	
 	protected void doBtnSpeichernActionPerformed(ActionEvent arg0)
 	{
 		try
@@ -155,6 +164,7 @@ public class NeueRechnungFenster extends JDialog
 			JOptionPane.showMessageDialog(this, e3.getMessage());
 		}
 	}
+	
 	protected void doBtnAbbruchActionPerformed(ActionEvent arg0)
 	{
 		this.dispose();

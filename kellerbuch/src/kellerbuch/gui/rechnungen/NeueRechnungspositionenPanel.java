@@ -36,7 +36,10 @@ public class NeueRechnungspositionenPanel extends JPanel
 	public void initPanel()
 	{
 		setLayout(new GridLayout(0, 3, 0, 0));
+		
+		//Combobox-Wein
 		cbWein = new JComboBox<Weine>(new Vector<Weine>(betrieb.getWeinliste()));
+		add(cbWein);
 		cbWein.setSelectedItem(null);
 		cbWein.addItemListener(new ItemListener() {
 			@Override
@@ -45,10 +48,13 @@ public class NeueRechnungspositionenPanel extends JPanel
 				doCbWeinItemStateChanged(e);
 			}
 		});
-		add(cbWein);
+
+		//Weinmenge
 		txtMenge = new JTextField("1");
 		txtMenge.setHorizontalAlignment(SwingConstants.CENTER);
 		add(txtMenge);
+		
+		//Weinpreis
 		lblEinzelpreis = new JLabel("Preis");
 		lblEinzelpreis.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblEinzelpreis);

@@ -55,7 +55,7 @@ public class Kundenpanel extends JPanel
 		txtFirma = new JTextField();
 		txtFirma.setBackground(SystemColor.control);
 		txtFirma.setText("Firma");
-		txtFirma.setBounds(36, 85, 176, 22);
+		txtFirma.setBounds(84, 85, 176, 22);
 		add(txtFirma);
 		txtFirma.setColumns(10);
 		
@@ -143,6 +143,10 @@ public class Kundenpanel extends JPanel
 		btnLoeschen.setBackground(new Color(255, 69, 0));
 		btnLoeschen.setBounds(400, 360, 97, 25);
 		add(btnLoeschen);
+		
+		JLabel lblFirma = new JLabel("Firma:");
+		lblFirma.setBounds(36, 88, 56, 16);
+		add(lblFirma);
 		btnLoeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				doLoeschenActionPerformed(arg0);
