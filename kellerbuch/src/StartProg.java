@@ -10,7 +10,7 @@ import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 import kellerbuch.gui.Hauptfenster;
 
-public class Start
+public class StartProg
 {	
 	public static void main(String[] args)
 	{

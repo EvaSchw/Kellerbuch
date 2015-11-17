@@ -77,4 +77,15 @@ public class Winzerbetrieb
 		else
 			throw new Exception("Rechnung existiert nicht!");
 	}
+	
+	public int getGroessteRechnungsnr()
+	{
+		int i = -1;
+		for(Rechnung r: rechnungsliste)
+		{
+			if(r.getRechnungsnr() > i)
+				i = r.getRechnungsnr();
+		}
+		return ++i;
+	}
 }

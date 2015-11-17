@@ -10,6 +10,7 @@ import kellerbuch.fachlogik.Winzerbetrieb;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Date;
 import java.util.Vector;
 import java.awt.Font;
 import java.awt.Color;
@@ -17,6 +18,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class NeueRechnungFenster extends JDialog
 {
@@ -70,6 +74,7 @@ public class NeueRechnungFenster extends JDialog
 		txtRechnungsnr = new JTextField();
 		pnlKunde.add(txtRechnungsnr);
 		txtRechnungsnr.setColumns(10);
+		txtRechnungsnr.setText(String.valueOf(betrieb.getGroessteRechnungsnr()));
 		
 		//Rechnungsdatum
 		JLabel lblDatum = new JLabel("Rechnungsdatum (TT.MM.JJJJ)");
@@ -77,30 +82,36 @@ public class NeueRechnungFenster extends JDialog
 		txtDatum = new JTextField();
 		pnlKunde.add(txtDatum);
 		txtDatum.setColumns(10);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		txtDatum.setText(String.valueOf(sdf.format(new Date())));
 		
-		//Rechnungspanel
+		//Rechnungspositionspanel
 		JScrollPane scrollPane = new JScrollPane();
 		pnlContent.add(scrollPane);
 		rechnungspospanel = new JPanel();
 		scrollPane.setViewportView(rechnungspospanel);
-		rechnungspospanel.setLayout(new GridLayout(0, 2, 0, 0));
-		rechnungspospanel.add(new NeueRechnungspositionenPanel(betrieb, 0));
+		rechnungspospanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		//Plus-Button
-		btnPlus = new ButtonRund("+");
-		btnPlus.setForeground(new Color(255, 255, 255));
-		btnPlus.setBackground(new Color(34, 139, 34));
-		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 18));
-		rechnungspospanel.add(btnPlus);
-		btnPlus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				doBtnPlusActionPerformed(arg0);
-			}
-		});
+		//neueRechnungspositionspanel
+		NeueRechnungspositionenPanel neueRechnungspositionenPanel = new NeueRechnungspositionenPanel(betrieb, 0);
+		rechnungspospanel.add(neueRechnungspositionenPanel);
 		
 		//Buttonpanel
 		JPanel pnlButtons = new JPanel();
 		getContentPane().add(pnlButtons, BorderLayout.SOUTH);
+		
+		//Plus-Button
+		btnPlus = new JButton("neue Zeile");
+		btnPlus.setForeground(new Color(255, 255, 255));
+		btnPlus.setBackground(new Color(34, 139, 34));
+		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 14));
+		pnlButtons.add(btnPlus);
+		btnPlus.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			doBtnPlusActionPerformed(arg0);
+		}
+		});
+				
 		btnSpeichern = new JButton("Speichern");
 		pnlButtons.add(btnSpeichern);
 		btnSpeichern.addActionListener(new ActionListener() {
@@ -119,9 +130,7 @@ public class NeueRechnungFenster extends JDialog
 	
 	protected void doBtnPlusActionPerformed(ActionEvent arg0)
 	{
-		rechnungspospanel.add(new JPanel());
 		rechnungspospanel.add(new NeueRechnungspositionenPanel(betrieb, 1));
-		rechnungspospanel.add(btnPlus);
 		revalidate();
 		repaint();
 	}
@@ -136,7 +145,7 @@ public class NeueRechnungFenster extends JDialog
 			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 			Rechnung r = new Rechnung(Integer.valueOf(txtRechnungsnr.getText()), sdf.parse(txtDatum.getText()), (Kunde) cBKunde.getSelectedItem());
 			int i = rechnungspospanel.getComponentCount() -1;
-			for(int j = 0; j <= i; j+=2)
+			for(int j = 0; j <= i; j++)
 			{
 				NeueRechnungspositionenPanel nr = (NeueRechnungspositionenPanel) rechnungspospanel.getComponent(j);
 				if(nr.getCbWein() == null)
