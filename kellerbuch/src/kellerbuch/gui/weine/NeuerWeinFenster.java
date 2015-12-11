@@ -5,6 +5,7 @@ import javax.swing.*;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ public class NeuerWeinFenster extends JDialog
 		
 		this.setTitle("Neuer Wein");
 		this.getContentPane().setLayout(new GridLayout(0, 2, 10, 10));
+		this.setMinimumSize(new Dimension(400, 350));
 		
 		initFenster();
 	}

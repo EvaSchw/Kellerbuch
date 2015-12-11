@@ -213,7 +213,7 @@ public class Kundenpanel extends JPanel
 	protected void doNeuActionPerformed(ActionEvent arg0)
 	{
 		NeuerKundeFenster nk = new NeuerKundeFenster(betrieb, kundenfenster);
-//		nk.setLocationRelativeTo(null);
+		nk.setLocationRelativeTo(this);
 		nk.setAlwaysOnTop(true);
 		nk.setVisible(true);
 	}

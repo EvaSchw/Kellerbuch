@@ -2,10 +2,12 @@ package kellerbuch.gui.rechnungen;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import kellerbuch.fachlogik.Kunde;
 import kellerbuch.fachlogik.Rechnung;
 import kellerbuch.fachlogik.Rechnungspositionen;
+import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 
 import java.awt.BorderLayout;
@@ -92,6 +94,23 @@ public class NeueRechnungFenster extends JDialog
 		scrollPane.setViewportView(rechnungspospanel);
 		rechnungspospanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		//Beschriftungspanel
+		JPanel beschriftungspanel = new JPanel();
+		beschriftungspanel.setBackground(new Color(102, 205, 170));
+		beschriftungspanel.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		rechnungspospanel.add(beschriftungspanel);
+		beschriftungspanel.setLayout(new GridLayout(1, 3, 0, 0));
+		JLabel lblWein = new JLabel("Weine");
+		lblWein.setHorizontalAlignment(SwingConstants.CENTER);
+		beschriftungspanel.add(lblWein);
+		JLabel lblMenge = new JLabel("Menge");
+		lblMenge.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMenge.setBorder(new MatteBorder(0, 1, 0, 1, (Color) new Color(0, 0, 0)));
+		beschriftungspanel.add(lblMenge);
+		JLabel lblPreis = new JLabel("Preis pro Wein");
+		lblPreis.setHorizontalAlignment(SwingConstants.CENTER);
+		beschriftungspanel.add(lblPreis);
+		
 		//neueRechnungspositionspanel
 		NeueRechnungspositionenPanel neueRechnungspositionenPanel = new NeueRechnungspositionenPanel(betrieb, 0);
 		rechnungspospanel.add(neueRechnungspositionenPanel);
@@ -145,12 +164,17 @@ public class NeueRechnungFenster extends JDialog
 			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 			Rechnung r = new Rechnung(Integer.valueOf(txtRechnungsnr.getText()), sdf.parse(txtDatum.getText()), (Kunde) cBKunde.getSelectedItem());
 			int i = rechnungspospanel.getComponentCount() -1;
-			for(int j = 0; j <= i; j++)
+			for(int j = 1; j <= i; j++)
 			{
 				NeueRechnungspositionenPanel nr = (NeueRechnungspositionenPanel) rechnungspospanel.getComponent(j);
 				if(nr.getCbWein() == null)
 					throw new Exception("Wein wurde nicht ausgewählt!");
 				r.getRechnungspositionen().add(new Rechnungspositionen(nr.getCbWein(), nr.getMenge()));
+				Weine w = nr.getCbWein();
+				if(w.getLagerstand() >= nr.getMenge())
+					w.setLagerstand(w.getLagerstand() - nr.getMenge());
+				else
+					throw new Exception("Nicht genügend Weine vom " + w + " auf Lager!");
 			}
 			betrieb.rechnungAnlegen(r);
 			fenster.updateList();

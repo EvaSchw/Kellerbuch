@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 public class Rechnungspanel extends JPanel
 {
@@ -29,6 +30,7 @@ public class Rechnungspanel extends JPanel
 	private JTextField txtRechnungsnummer;
 	private JTextField txtRechnungsdatum;
 	private JTextField txtOrt;
+	private JLabel lblRechnungspreis;
 	
 	public Rechnungspanel(Rechnungsfenster rf, Winzerbetrieb wb)
 	{
@@ -98,12 +100,42 @@ public class Rechnungspanel extends JPanel
 		pnlKunde.add(txtRechnungsdatum);
 		txtRechnungsdatum.setColumns(10);
 		
+		//Beschriftungspanel
+		JPanel pnlBeschriftung = new JPanel();
+		pnlBeschriftung.setLayout(new GridLayout(1, 3, 0, 0));
+		pnlBeschriftung.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		pnlBeschriftung.setBackground(new Color(102, 205, 170));
+		pnlContent.add(pnlBeschriftung);
+		JLabel lblWein = new JLabel("Weine");
+		lblWein.setFont(new Font("Tahoma", Font.BOLD, 14));
+		pnlBeschriftung.add(lblWein);
+		JLabel lblMenge = new JLabel("Menge");
+		lblMenge.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMenge.setHorizontalAlignment(SwingConstants.CENTER);
+		pnlBeschriftung.add(lblMenge);
+		JLabel lblPreis = new JLabel("Gesamtpreis pro Wein");
+		lblPreis.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPreis.setHorizontalAlignment(SwingConstants.RIGHT);
+		pnlBeschriftung.add(lblPreis);
+		
 		//Rechnungspositionspanel
 		JScrollPane scrollPane = new JScrollPane();
 		pnlContent.add(scrollPane);
 		pnlRechungspositionen = new JPanel();
 		scrollPane.setViewportView(pnlRechungspositionen);
 		pnlRechungspositionen.setLayout(new BoxLayout(pnlRechungspositionen, BoxLayout.PAGE_AXIS));
+		
+		//Gesamtpreispanel
+		JPanel pnlGesamtpreis = new JPanel();
+		pnlContent.add(pnlGesamtpreis);
+		pnlGesamtpreis.setLayout(new GridLayout(0, 2, 0, 0));
+		JLabel lblSumme = new JLabel("Gesamtpreis");
+		lblSumme.setFont(new Font("Tahoma", Font.BOLD, 14));
+		pnlGesamtpreis.add(lblSumme);
+		lblRechnungspreis = new JLabel("Preis");
+		lblRechnungspreis.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRechnungspreis.setHorizontalAlignment(SwingConstants.RIGHT);
+		pnlGesamtpreis.add(lblRechnungspreis);
 		
 		//Buttonpanel
 		JPanel pnlButtons = new JPanel();
@@ -136,6 +168,7 @@ public class Rechnungspanel extends JPanel
 		txtRechnungsnummer.setText(String.valueOf(rechnung.getRechnungsnr()));
 		txtRechnungsdatum.setText(String.valueOf(rechnung.getRechnungsdatum()));
 		setRechnungsPositionen(rechnung.getRechnungspositionen());
+		lblRechnungspreis.setText(String.valueOf(getGesamtpreis(rechnung.getRechnungspositionen())));
 		revalidate();
 		repaint();
 	}
@@ -144,10 +177,21 @@ public class Rechnungspanel extends JPanel
 	{
 		pnlRechungspositionen.removeAll();
 		int i = 0;
-		for(Rechnungspositionen pos : positionen){
+		for(Rechnungspositionen pos : positionen)
+		{
 			pnlRechungspositionen.add(new RechnungspositionenPanel(pos, i));
 			i++;
 		}
+	}
+	
+	public double getGesamtpreis(List<Rechnungspositionen> positionen)
+	{
+		double preis = 0.0;
+		for(Rechnungspositionen pos : positionen)
+		{
+			preis += (pos.getWein().getPreis() * pos.getMenge());
+		}
+		return preis;
 	}
 	
 	protected void doBtnNeueRechnungActionPerformed(ActionEvent e)
@@ -155,5 +199,6 @@ public class Rechnungspanel extends JPanel
 		JDialog neueRechnung = new NeueRechnungFenster(betrieb, rechnungsfenster);
 		neueRechnung.setVisible(true);
 		neueRechnung.setAlwaysOnTop(true);
+		neueRechnung.setLocationRelativeTo(this);
 	}
 }

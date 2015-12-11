@@ -28,12 +28,12 @@ public class NeueRechnungspositionenPanel extends JPanel
 	public NeueRechnungspositionenPanel(Winzerbetrieb wb, int i)
 	{		
 		this.betrieb = wb;
-		initPanel();
+		initPanel(i);
 		if(i != 0)
 			setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
 	}
 	
-	public void initPanel()
+	public void initPanel(int i)
 	{
 		setLayout(new GridLayout(0, 3, 0, 0));
 		

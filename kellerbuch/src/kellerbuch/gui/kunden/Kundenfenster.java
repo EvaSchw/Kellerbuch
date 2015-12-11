@@ -1,6 +1,7 @@
 package kellerbuch.gui.kunden;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.*;
@@ -24,7 +25,8 @@ public class Kundenfenster extends JDialog
 		this.betrieb = betrieb;
 	
 		this.setTitle("Kunden");
-		this.setSize(800, 500);
+		this.setSize(750, 500);
+		this.setResizable(false);
 		
 		updateList();
 		

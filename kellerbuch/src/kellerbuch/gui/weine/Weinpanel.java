@@ -210,8 +210,8 @@ public class Weinpanel extends JPanel
 	protected void doNeuActionPerformed(ActionEvent arg0)
 	{
 		NeuerWeinFenster nw = new NeuerWeinFenster(betrieb, weinfenster);
+		nw.setLocationRelativeTo(this);
 		nw.setAlwaysOnTop(true);
 		nw.setVisible(true);
-		nw.setMinimumSize(new Dimension(400, 350));
 	}
 }

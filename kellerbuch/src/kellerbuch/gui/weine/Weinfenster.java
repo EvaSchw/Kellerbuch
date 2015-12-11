@@ -3,6 +3,7 @@ package kellerbuch.gui.weine;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -27,6 +28,7 @@ public class Weinfenster extends JDialog
 
 		this.setTitle("Weine");
 		this.setSize(800, 500);
+		this.setResizable(false);
 		
 		updateList();
 		
