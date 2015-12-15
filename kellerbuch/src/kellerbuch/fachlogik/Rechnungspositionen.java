@@ -1,10 +1,23 @@
 package kellerbuch.fachlogik;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="rp_rechnungspositionen")
+@NamedQuery(name="Rechnungspositionen.findAll", query="select rp from Rechnungspositionen rp")
 public class Rechnungspositionen
 {
-	Rechnung rechnung;
+	//Klärung wie genau erstellen (ob überhaupt id benötigt wird) (TeeshopCopy Bestellung und BestellungPK)
+	@Id
+	private int id;
+	@ManyToOne
+	private Rechnung rechnung;
 	private Weine wein;
 	private int menge;
+	
+	public Rechnungspositionen()
+	{
+	}
 	
 	public Rechnungspositionen(Weine w, int menge)
 	{
@@ -16,10 +29,12 @@ public class Rechnungspositionen
 	{
 		return menge;
 	}
+	
 	public void setMenge(int menge)
 	{
 		this.menge = menge;
 	}
+	
 	public Rechnung getRechnung()
 	{
 		return rechnung;
@@ -29,6 +44,7 @@ public class Rechnungspositionen
 	{
 		this.rechnung = rechnung;
 	}
+	
 	public Weine getWein()
 	{
 		return wein;

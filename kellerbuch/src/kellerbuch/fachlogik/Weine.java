@@ -1,23 +1,40 @@
 package kellerbuch.fachlogik;
 
+import javax.persistence.*;
+
+@Entity
+@Table (name="w_weine")
+@NamedQuery(name="Weine.findAll", query="Select w from Weine w")
 public class Weine
 {
-	private static int nummer = 1;
+	@Id //kennzeichnet den eindeutigen Schlüssel
+	@Column(name="w_id") //wenn Tabellenspalte anders heißt als hier
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Schlüssel automatisch generieren
 	private int id;
+	@Column(name="w_bezeichnung")
 	private String bezeichnung; // z.B. Grüner Veltliner Alte Rebe
+	@Column(name="w_jahrgang")
 	private int jahrgang; // z.B. 2014
+	@Column(name="w_alkohol")
 	private int alkohol; // z.B. 12
+	@Column(name="w_qualitätswein")
 	private boolean qualitaetswein;
+	@Column(name="w_lage")
 	private String lage; // z.B. Kremstal
+	@Column(name="w_liter")
 	private double liter; // z.B. 0,75
+	@Column(name="w_lagerstand")
 	private int lagerstand; // z.B. 500
+	@Column(name="w_preis")
 	private double preis; // z.B. 5,50
+	
+	public Weine()
+	{
+	}
 	
 	public Weine(String bezeichnung, int jahrgang, int alkohol,	boolean qualitaetswein, String lage, double liter,
 			int lagerstand,	double preis) throws Exception
 	{
-		this.id = nummer;
-		nummer++;
 		setBezeichnung(bezeichnung);
 		
 		if(jahrgang >= 2000)
@@ -36,6 +53,16 @@ public class Weine
 		setLagerstand(lagerstand);
 		setPreis(preis);
 	}
+	
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	} 
 
 	public String getBezeichnung()
 	{
@@ -50,6 +77,11 @@ public class Weine
 			throw new Exception("Bezeichnung darf nicht leer sein!");
 	}
 	
+	public int getJahrgang()
+	{
+		return jahrgang;
+	}
+		
 	public int getAlkohol()
 	{
 		return alkohol;
@@ -97,11 +129,6 @@ public class Weine
 			this.preis = preis;
 		else
 			throw new Exception("Preis darf nicht kleiner als 0 sein!");
-	}
-	
-	public int getJahrgang()
-	{
-		return jahrgang;
 	}
 	
 	@Override

@@ -3,26 +3,44 @@ package kellerbuch.fachlogik;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="k_kunden")
+@NamedQuery(name = "Kunden.findAll", query = "Select k from Kunde k")
 public class Kunde
 {
-//	Anrede, Firma, Nachname, Vorname, Straï¿½e, Hausnr, PLZ, Ort, Land, Telefonnummer, E-Mail
-	private static int laufendeNr = 1;
+	@Id
+	@Column(name = "k_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int kundennr;
+	@Column(name = "k_firma")
 	private String firma;
+	@Column(name = "k_nachname")
 	private String nachname;
+	@Column(name = "k_vorname")
 	private String vorname;
+	@Column(name = "k_strasse")
 	private String strasse;
+	@Column(name = "k_hausnr")
 	private String hausnummer;
+	@Column(name = "k_plz")
 	private int plz;
+	@Column(name = "k_ort")
 	private String ort;
+	@Column(name = "k_land")
 	private String land;
+	
+	@OneToMany(mappedBy="kunde", cascade=CascadeType.REMOVE) //MappedBy = zu was das in der anderen Tabelle gehört
 	private List<Rechnung> alleRechnungen;
+	
+	public Kunde()
+	{
+	}
 	
 	public Kunde(String firma, String nachname, String vorname, String strasse, String hausnummer, int plz, String ort,
 					String land) throws Exception
 	{
-		this.kundennr = laufendeNr;
-		laufendeNr++;
 		this.alleRechnungen = new ArrayList<Rechnung>();
 		setFirma(firma);
 		setNachname(nachname);
@@ -50,6 +68,16 @@ public class Kunde
 		}
 		else
 			return (nachname + " " + vorname);
+	}
+	
+	public int getKundennr()
+	{
+		return kundennr;
+	}
+
+	public void setKundennr(int id)
+	{
+		this.kundennr = id;
 	}
 	
 	public String getFirma()
@@ -134,11 +162,6 @@ public class Kunde
 			this.land = land;
 		else
 			throw new Exception("Land darf nicht leer sein!");
-	}
-	
-	public int getKundennr()
-	{
-		return kundennr;
 	}
 	
 	public List<Rechnung> getRechnungen()

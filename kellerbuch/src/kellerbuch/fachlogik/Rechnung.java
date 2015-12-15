@@ -5,19 +5,34 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="r_rechnungen")
+@NamedQuery(name = "Rechnung.findAll", query = "Select r from Rechnung r")
 public class Rechnung
 {
-	private static int nummer = 1;
+	@Id
+	@Column(name = "r_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "r_nr")
 	private int rechnungsnr;
+	@Column(name = "r_datum")
 	private Date rechnungsdatum;
+	@Column(name = "r_k_id")
+	@ManyToOne
 	private Kunde kunde;
+	
+	@OneToMany(mappedBy = "rechnung", cascade= CascadeType.REMOVE)
 	private List<Rechnungspositionen> rechnungspositionen;
+	
+	public Rechnung()
+	{
+	}
 	
 	public Rechnung(int rechnungsnr, Date datum, Kunde k)
 	{
-		this.id = nummer;
-		nummer++;
 		this.rechnungsnr = rechnungsnr;
 		this.rechnungsdatum = datum;
 		this.kunde = k;
@@ -28,6 +43,16 @@ public class Rechnung
 	public String toString()
 	{
 		return "Rechnung " + this.rechnungsnr;
+	}
+	
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 	
 	public int getRechnungsnr()
