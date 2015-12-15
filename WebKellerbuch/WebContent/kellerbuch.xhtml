@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="ISO-8859-1"/>
+	<title>Winzerhof Drozze - Familie Schwanzelberger</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:selectOneListbox>
+			<f:selectItems var="wein" itemLabel="#{wein.bezeichnung}" value="#{kellerbuch.getWeinliste()}"/>
+		</h:selectOneListbox>
+	</h:form>
+</h:body>
+</h:html>
