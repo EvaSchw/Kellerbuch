@@ -8,11 +8,12 @@ public class Winzerbetrieb
 	private List<Kunde> kundenliste;
 	private List<Rechnung> rechnungsliste;
 
+	//wieder bearbeiten
 	public Winzerbetrieb() throws Exception
 	{
 		this.weinliste = new ArrayList<Weine>();
-		weinliste.add(new Weine("GV", 2010, 12, true, "NÖ", 1, 6, 100));
-		weinliste.add(new Weine("RR", 2009, 10, false, "Wien", 1, 6, 100));
+		weinliste.add(new Weine("GV", 2010, 12, true, "NÖ", 1, 100, 6));
+		weinliste.add(new Weine("RR", 2009, 10, false, "Wien", 1, 100, 6));
 		this.kundenliste = new ArrayList<Kunde>();
 		this.rechnungsliste = new ArrayList<Rechnung>();
 	}

@@ -7,12 +7,18 @@ import javax.persistence.*;
 @NamedQuery(name="Rechnungspositionen.findAll", query="select rp from Rechnungspositionen rp")
 public class Rechnungspositionen
 {
-	//Klärung wie genau erstellen (ob überhaupt id benötigt wird) (TeeshopCopy Bestellung und BestellungPK)
+	//Klärung wie genau erstellen (ob überhaupt id benötigt wird)
 	@Id
+	@Column(name="p_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
+	@Column(name="rp_r_id")
 	private Rechnung rechnung;
+	@ManyToOne
+	@Column(name="rp_w_id")
 	private Weine wein;
+	@Column(name="rp_menge")
 	private int menge;
 	
 	public Rechnungspositionen()
@@ -25,14 +31,19 @@ public class Rechnungspositionen
 		this.menge = menge;
 	}
 	
+	public int getId()
+	{
+		return this.id;
+	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	
 	public int getMenge()
 	{
 		return menge;
-	}
-	
-	public void setMenge(int menge)
-	{
-		this.menge = menge;
 	}
 	
 	public Rechnung getRechnung()
