@@ -37,7 +37,7 @@ public class NeueRechnungFenster extends JDialog
 	private JButton btnAbbruch;
 	private JPanel rechnungspospanel;
 	
-	public NeueRechnungFenster(Winzerbetrieb wb, Rechnungsfenster rf)
+	public NeueRechnungFenster(Winzerbetrieb wb, Rechnungsfenster rf) throws Exception
 	{
 		betrieb = wb;
 		fenster = rf;
@@ -49,7 +49,7 @@ public class NeueRechnungFenster extends JDialog
 		initFrame();
 	}
 	
-	public void initFrame()
+	public void initFrame() throws Exception
 	{
 		//Gesamtpanel
 		JPanel pnlContent = new JPanel();
@@ -149,9 +149,17 @@ public class NeueRechnungFenster extends JDialog
 	
 	protected void doBtnPlusActionPerformed(ActionEvent arg0)
 	{
-		rechnungspospanel.add(new NeueRechnungspositionenPanel(betrieb, 1));
-		revalidate();
-		repaint();
+		try
+		{
+			rechnungspospanel.add(new NeueRechnungspositionenPanel(betrieb, 1));
+			revalidate();
+			repaint();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
 	}
 	
 	protected void doBtnSpeichernActionPerformed(ActionEvent arg0)

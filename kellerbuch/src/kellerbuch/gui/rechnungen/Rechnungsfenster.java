@@ -65,9 +65,17 @@ public class Rechnungsfenster extends JDialog
 	
 	public void updateList()
 	{
-		rechnungModel.clear();
-		for(Rechnung r: wb.getRechnungsliste())
-			rechnungModel.addElement(r);
+		try
+		{
+			rechnungModel.clear();
+			for(Rechnung r: wb.getRechnungsliste())
+				rechnungModel.addElement(r);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
 	}
 	
 	public void doRechnungValueChanged(ListSelectionEvent arg0)

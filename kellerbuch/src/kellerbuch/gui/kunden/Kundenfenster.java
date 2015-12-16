@@ -67,9 +67,17 @@ public class Kundenfenster extends JDialog
 	
 	public void updateList()
 	{
-		kundenModel.clear();
-		for(Kunde k: betrieb.getKundenliste())
-			kundenModel.addElement(k);
+		try
+		{
+			kundenModel.clear();
+			for(Kunde k: betrieb.getKundenliste())
+				kundenModel.addElement(k);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
 	}
 	
 	public void doKundenValueChanged(ListSelectionEvent arg0)

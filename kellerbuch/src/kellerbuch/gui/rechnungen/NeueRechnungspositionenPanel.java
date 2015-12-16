@@ -25,7 +25,7 @@ public class NeueRechnungspositionenPanel extends JPanel
 	private JTextField txtMenge;
 	private JLabel lblEinzelpreis;
 	
-	public NeueRechnungspositionenPanel(Winzerbetrieb wb, int i)
+	public NeueRechnungspositionenPanel(Winzerbetrieb wb, int i) throws Exception
 	{		
 		this.betrieb = wb;
 		initPanel(i);
@@ -33,7 +33,7 @@ public class NeueRechnungspositionenPanel extends JPanel
 			setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
 	}
 	
-	public void initPanel(int i)
+	public void initPanel(int i) throws Exception
 	{
 		setLayout(new GridLayout(0, 3, 0, 0));
 		

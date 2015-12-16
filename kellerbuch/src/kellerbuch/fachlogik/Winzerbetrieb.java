@@ -12,23 +12,23 @@ public class Winzerbetrieb
 	public Winzerbetrieb() throws Exception
 	{
 		this.weinliste = new ArrayList<Weine>();
-		weinliste.add(new Weine("GV", 2010, 12, true, "NÖ", 1, 100, 6));
-		weinliste.add(new Weine("RR", 2009, 10, false, "Wien", 1, 100, 6));
+//		weinliste.add(new Weine("GV", 2010, 12, true, "NÖ", 1, 100, 6));
+//		weinliste.add(new Weine("RR", 2009, 10, false, "Wien", 1, 100, 6));
 		this.kundenliste = new ArrayList<Kunde>();
 		this.rechnungsliste = new ArrayList<Rechnung>();
 	}
 
-	public List<Weine> getWeinliste()
+	public List<Weine> getWeinliste() throws Exception
 	{
 		return weinliste;
 	}
 
-	public List<Kunde> getKundenliste()
+	public List<Kunde> getKundenliste() throws Exception
 	{
 		return kundenliste;
 	}
 	
-	public List<Rechnung> getRechnungsliste()
+	public List<Rechnung> getRechnungsliste() throws Exception
 	{
 		return rechnungsliste;
 	}
@@ -73,14 +73,6 @@ public class Winzerbetrieb
 			throw new Exception("Kunde existiert nicht!");
 	}
 	
-	public void rechnungloeschen(Rechnung rechnung) throws Exception
-	{
-		if(rechnungsliste.contains(rechnung))
-			rechnungsliste.remove(rechnung);
-		else
-			throw new Exception("Rechnung existiert nicht!");
-	}
-	
 	public int getGroessteRechnungsnr()
 	{
 		int i = -1;
@@ -90,5 +82,9 @@ public class Winzerbetrieb
 				i = r.getRechnungsnr();
 		}
 		return ++i;
+	}
+	
+	public void speichern() throws Exception
+	{
 	}
 }

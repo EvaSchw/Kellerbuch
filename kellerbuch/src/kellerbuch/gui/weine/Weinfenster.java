@@ -70,9 +70,17 @@ public class Weinfenster extends JDialog
 	
 	public void updateList()
 	{
-		weinModel.clear();
-		for(Weine w: betrieb.getWeinliste())
-			weinModel.addElement(w);
+		try
+		{
+			weinModel.clear();
+			for(Weine w: betrieb.getWeinliste())
+				weinModel.addElement(w);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
 	}
 	
 	protected void doWeineValueChanged(ListSelectionEvent arg0)

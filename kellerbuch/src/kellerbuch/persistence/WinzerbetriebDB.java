@@ -1,5 +1,7 @@
 package kellerbuch.persistence;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import kellerbuch.fachlogik.Kunde;
@@ -15,11 +17,53 @@ public class WinzerbetriebDB extends Winzerbetrieb
 	{
 		try
 		{
-			em = Persistence.createEntityManagerFactory("kellerbuch").createEntityManager();
+			em = Persistence.createEntityManagerFactory("kellerbuch_db").createEntityManager();
 		}
 		catch(Exception e)
 		{
 			throw new Exception("kann nicht zur Datenbank verbinden", e);
+		}
+	}
+	
+	@Override
+	public List<Weine> getWeinliste() throws Exception
+	{
+		try
+		{
+			TypedQuery<Weine> query = em.createNamedQuery("Weine.findAll", Weine.class);
+			return query.getResultList();
+		}
+		catch (Exception e)
+		{
+			throw new Exception("Fehler beim Abrufen der Weine", e);
+		}
+	}
+	
+	@Override
+	public List<Kunde> getKundenliste() throws Exception
+	{
+		try
+		{
+			TypedQuery<Kunde> query = em.createNamedQuery("Kunde.findAll", Kunde.class);
+			return query.getResultList();
+		}
+		catch (Exception e)
+		{
+			throw new Exception("Fehler beim Abrufen der Kunden", e);
+		}
+	}
+	
+	@Override
+	public List<Rechnung> getRechnungsliste() throws Exception
+	{
+		try
+		{
+			TypedQuery<Rechnung> query = em.createNamedQuery("Rechnung.findAll", Rechnung.class);
+			return query.getResultList();
+		}
+		catch (Exception e)
+		{
+			throw new Exception("Fehler beim Abrufen der Rechnungen", e);
 		}
 	}
 	
@@ -96,6 +140,38 @@ public class WinzerbetriebDB extends Winzerbetrieb
 		{
 			em.getTransaction().rollback();
 			throw new Exception("Fehler beim Löschen eines Weines", e);
+		}
+	}
+	
+	@Override
+	public void kundenloeschen(Kunde k) throws Exception
+	{
+		try
+		{
+			em.getTransaction().begin();
+			em.remove(k);
+			em.getTransaction().commit();
+		}
+		catch (Exception e)
+		{
+			em.getTransaction().rollback();
+			throw new Exception("Fehler beim Löschen eines Weines", e);
+		}
+	}
+	
+	@Override
+	public void speichern() throws Exception
+	{
+		try
+		{
+			em.getTransaction().begin();
+			em.getTransaction().commit();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			throw new Exception("Fehler beim Speichern der Änderungen", e);
 		}
 	}
 }

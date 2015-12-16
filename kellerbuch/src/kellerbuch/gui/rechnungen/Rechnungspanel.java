@@ -196,9 +196,22 @@ public class Rechnungspanel extends JPanel
 	
 	protected void doBtnNeueRechnungActionPerformed(ActionEvent e)
 	{
-		JDialog neueRechnung = new NeueRechnungFenster(betrieb, rechnungsfenster);
-		neueRechnung.setVisible(true);
-		neueRechnung.setAlwaysOnTop(true);
-		neueRechnung.setLocationRelativeTo(this);
+		try
+		{
+			JDialog neueRechnung = new NeueRechnungFenster(betrieb, rechnungsfenster);
+			neueRechnung.setVisible(true);
+			neueRechnung.setAlwaysOnTop(true);
+			neueRechnung.setLocationRelativeTo(this);
+		}
+		catch (SecurityException e1)
+		{
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(this, e1.getMessage());
+		}
+		catch (Exception e1)
+		{
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(this, e1.getMessage());
+		}
 	}
 }
