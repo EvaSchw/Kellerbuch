@@ -22,7 +22,7 @@ public class Rechnung
 	private Date rechnungsdatum;
 	
 	@ManyToOne
-	@Column(name = "r_k_id")
+	@JoinColumn("r_k_id")
 	private Kunde kunde;
 	
 	@OneToMany(mappedBy = "rechnung", cascade= CascadeType.REMOVE)
