@@ -9,7 +9,7 @@ public class Rechnungspositionen
 {
 	//Klärung wie genau erstellen (ob überhaupt id benötigt wird)
 	@Id
-	@Column(name="p_id")
+	@Column(name="rp_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne

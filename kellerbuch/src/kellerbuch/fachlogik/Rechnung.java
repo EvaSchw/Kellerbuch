@@ -20,8 +20,9 @@ public class Rechnung
 	private int rechnungsnr;
 	@Column(name = "r_datum")
 	private Date rechnungsdatum;
-	@Column(name = "r_k_id")
+	
 	@ManyToOne
+	@Column(name = "r_k_id")
 	private Kunde kunde;
 	
 	@OneToMany(mappedBy = "rechnung", cascade= CascadeType.REMOVE)
