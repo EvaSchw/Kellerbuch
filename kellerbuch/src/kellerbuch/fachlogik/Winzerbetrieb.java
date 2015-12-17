@@ -70,7 +70,7 @@ public class Winzerbetrieb
 			throw new Exception("Kunde existiert nicht!");
 	}
 	
-	public int getGroessteRechnungsnr()
+	public int getGroessteRechnungsnr() throws Exception
 	{
 		int i = -1;
 		for(Rechnung r: rechnungsliste)

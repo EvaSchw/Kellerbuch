@@ -174,4 +174,16 @@ public class WinzerbetriebDB extends Winzerbetrieb
 			throw new Exception("Fehler beim Speichern der Änderungen", e);
 		}
 	}
+	
+	@Override
+	public int getGroessteRechnungsnr() throws Exception
+	{
+		int i = -1;
+		for(Rechnung r: getRechnungsliste())
+		{
+			if(r.getRechnungsnr() > i)
+				i = r.getRechnungsnr();
+		}
+		return ++i;
+	}
 }
