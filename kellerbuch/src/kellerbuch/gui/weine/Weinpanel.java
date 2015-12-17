@@ -66,7 +66,7 @@ public class Weinpanel extends JPanel
 		//Lage
 		lblLage = new JLabel("Lage");
 		lblLage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLage.setBounds(234, 154, 56, 16);
+		lblLage.setBounds(205, 154, 122, 16);
 		add(lblLage);
 		
 		//Alkohol

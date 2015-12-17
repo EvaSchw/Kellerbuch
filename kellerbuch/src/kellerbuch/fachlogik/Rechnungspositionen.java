@@ -13,11 +13,13 @@ public class Rechnungspositionen
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@Column(name="rp_r_id")
+	@JoinColumn(name="rp_r_id")
 	private Rechnung rechnung;
+	
 	@ManyToOne
-	@Column(name="rp_w_id")
+	@JoinColumn(name="rp_w_id")
 	private Weine wein;
+	
 	@Column(name="rp_menge")
 	private int menge;
 	

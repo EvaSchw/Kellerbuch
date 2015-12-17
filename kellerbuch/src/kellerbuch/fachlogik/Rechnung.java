@@ -18,14 +18,16 @@ public class Rechnung
 	private int id;
 	@Column(name = "r_nr")
 	private int rechnungsnr;
+	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "r_datum")
 	private Date rechnungsdatum;
 	
 	@ManyToOne
-	@JoinColumn("r_k_id")
+	@JoinColumn(name = "r_k_id")
 	private Kunde kunde;
 	
-	@OneToMany(mappedBy = "rechnung", cascade= CascadeType.REMOVE)
+	@OneToMany(mappedBy = "rechnung", cascade= {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<Rechnungspositionen> rechnungspositionen;
 	
 	public Rechnung()

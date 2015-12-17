@@ -177,7 +177,9 @@ public class NeueRechnungFenster extends JDialog
 				NeueRechnungspositionenPanel nr = (NeueRechnungspositionenPanel) rechnungspospanel.getComponent(j);
 				if(nr.getCbWein() == null)
 					throw new Exception("Wein wurde nicht ausgewählt!");
-				r.getRechnungspositionen().add(new Rechnungspositionen(nr.getCbWein(), nr.getMenge()));
+				Rechnungspositionen rp = new Rechnungspositionen(nr.getCbWein(), nr.getMenge());
+				r.getRechnungspositionen().add(rp);
+				rp.setRechnung(r);
 				Weine w = nr.getCbWein();
 				if(w.getLagerstand() >= nr.getMenge())
 					w.setLagerstand(w.getLagerstand() - nr.getMenge());

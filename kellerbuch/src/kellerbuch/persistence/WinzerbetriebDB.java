@@ -17,7 +17,7 @@ public class WinzerbetriebDB extends Winzerbetrieb
 	{
 		try
 		{
-			em = Persistence.createEntityManagerFactory("kellerbuch_db").createEntityManager();
+			em = Persistence.createEntityManagerFactory("kellerbuch").createEntityManager();
 		}
 		catch(Exception e)
 		{
@@ -44,7 +44,7 @@ public class WinzerbetriebDB extends Winzerbetrieb
 	{
 		try
 		{
-			TypedQuery<Kunde> query = em.createNamedQuery("Kunde.findAll", Kunde.class);
+			TypedQuery<Kunde> query = em.createNamedQuery("Kunden.findAll", Kunde.class);
 			return query.getResultList();
 		}
 		catch (Exception e)

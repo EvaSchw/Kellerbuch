@@ -16,7 +16,7 @@ public class Weine
 	@Column(name="w_jahrgang")
 	private int jahrgang; // z.B. 2014
 	@Column(name="w_alkohol")
-	private int alkohol; // z.B. 12
+	private double alkohol; // z.B. 12,5
 	@Column(name="w_qualitätswein")
 	private boolean qualitaetswein;
 	@Column(name="w_lage")
@@ -82,7 +82,7 @@ public class Weine
 		return jahrgang;
 	}
 		
-	public int getAlkohol()
+	public double getAlkohol()
 	{
 		return alkohol;
 	}
