@@ -1,0 +1,28 @@
+@CHARSET "ISO-8859-1";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+body {
+	font-family: 'Open Sans';
+}
+
+h1{
+	text-align:center;
+	color:white;
+	font-size: 25pt;
+	font-weight: bold;
+}
+
+#loginLink{
+	color:white;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 14px;
+}
+
+#header{
+	background-color: green;
+}
+
+thead{
+	background-color: #C3C8C3;
+}

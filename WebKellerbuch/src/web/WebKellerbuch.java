@@ -1,5 +1,7 @@
 package web;
 
+import java.util.List;
+
 import javax.faces.bean.*;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -7,11 +9,13 @@ import javax.faces.convert.Converter;
 
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
+import kellerbuch.persistence.WinzerbetriebDB;
 
-@ManagedBean(name="kellerbuch", eager=true)
 @ApplicationScoped
-public class WebKellerbuch extends Winzerbetrieb implements Converter
+@ManagedBean(name="kellerbuch", eager=true)
+public class WebKellerbuch extends WinzerbetriebDB implements Converter
 {
+	
 	public WebKellerbuch() throws Exception
 	{
 		super();
@@ -29,5 +33,11 @@ public class WebKellerbuch extends Winzerbetrieb implements Converter
 	{
 		Weine w = (Weine) o;
 		return w.getBezeichnung();
+	}
+	
+	@Override
+	public List<Weine> getWeinliste() throws Exception
+	{
+		return super.getWeinliste();
 	}
 }
