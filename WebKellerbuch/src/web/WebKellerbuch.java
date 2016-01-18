@@ -16,6 +16,18 @@ import kellerbuch.persistence.WinzerbetriebDB;
 public class WebKellerbuch extends WinzerbetriebDB implements Converter
 {
 	
+	int anzahl;
+	
+	public int getAnzahl()
+	{
+		return anzahl;
+	}
+
+	public void setAnzahl(int anzahl)
+	{
+		this.anzahl = anzahl;
+	}
+
 	public WebKellerbuch() throws Exception
 	{
 		super();
@@ -24,7 +36,8 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent ui, String id)
 	{
-		// im Kellerbuch eine find(Weine w) methode damit ich anhand der Weinbezeichnung den Wein finde
+		if(id != null)
+			return findeWein(Integer.valueOf(id));
 		return null;
 	}
 
@@ -38,6 +51,7 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 	@Override
 	public List<Weine> getWeinliste() throws Exception
 	{
+		setAnzahl(1);
 		return super.getWeinliste();
 	}
 }

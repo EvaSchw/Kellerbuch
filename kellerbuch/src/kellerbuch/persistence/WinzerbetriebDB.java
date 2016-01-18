@@ -186,4 +186,9 @@ public class WinzerbetriebDB extends Winzerbetrieb
 		}
 		return ++i;
 	}
+	
+	public Weine findeWein(int id)
+	{
+		return em.find(Weine.class, id);
+	}
 }

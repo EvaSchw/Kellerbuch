@@ -27,10 +27,10 @@
 		    			<h:inputText>
 		    				<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
 		    				<f:passThroughAttribute name="min" value="1"></f:passThroughAttribute>
-		    				<f:passThroughAttribute name="value" value="1"></f:passThroughAttribute>
 		    			</h:inputText>
 		    		</h:column>
 		    		<h:column>
+		    		<!-- Mit Anzahl übergeben funktioniert noch nicht!!! -->
 		    			<h:commandButton value="In den Warenkorb" action="#{warenkorb.neu(wein, anz)}"/>
 		    		</h:column>
 		    	</h:dataTable>
