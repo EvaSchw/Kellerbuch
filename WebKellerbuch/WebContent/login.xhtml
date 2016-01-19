@@ -1,15 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<h:html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/vorlage/vorlage.xhtml">
 	<ui:define name="title">Login</ui:define>
 	<ui:define name="content">
-	    <p>Das hier ist die Loginseite</p>
+	    <p id="login">Bitte hier einloggen!</p>
+	    <h:form>
+	    	<div class="form-group">
+    			<label for="username">Username:</label>
+    			<h:inputText value="{#login.username}" type="user" class="form-control" id="user" p:placeholder="Ihr Username" required="true"/>
+  			</div>
+ 			<div class="form-group">
+    			<label for="password">Passwort:</label>
+    			<h:inputSecret value="{#login.passwd}" type="password" class="form-control" id="password" p:placeholder="Ihr Passwort"/>
+  			</div>
+  			
+  			<h:commandButton styleClass="btn btn-default" value="Anmelden" />
+  			<br/>
+  			<br/>
+   			<label for="info">Sollten Sie noch keinen Usernamen und Passwort besitzen, so <a href="mailto:schwanzelberger@winzerhof-drozze.at">schreiben Sie uns!</a></label>
+  			<br/>
+  			<h:outputLink value="mailto:#{kellerbuch.email}">
+			    <h:outputText value="hier klicken" />
+			</h:outputLink>
+  			
+  		</h:form>
+	    <br/>
+	    <br/>
 	</ui:define>
 </ui:composition>
-</html>
+</h:html>

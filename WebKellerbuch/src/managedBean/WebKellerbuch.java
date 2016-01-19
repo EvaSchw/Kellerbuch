@@ -1,4 +1,4 @@
-package web;
+package managedBean;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import kellerbuch.persistence.WinzerbetriebDB;
 @ManagedBean(name="kellerbuch", eager=true)
 public class WebKellerbuch extends WinzerbetriebDB implements Converter
 {
-	
-	int anzahl;
+	private String email;
+	private int anzahl;
 	
 	public int getAnzahl()
 	{
@@ -28,9 +28,15 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 		this.anzahl = anzahl;
 	}
 
+	public String getEmail()
+	{
+		return this.email;
+	}
+	
 	public WebKellerbuch() throws Exception
 	{
 		super();
+		this.email = "schwanzelberger@winzerhof-drozze.at";
 	}
 
 	@Override

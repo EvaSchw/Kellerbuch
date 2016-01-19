@@ -31,12 +31,14 @@
 		    		</h:column>
 		    		<h:column>
 		    		<!-- Mit Anzahl übergeben funktioniert noch nicht!!! -->
-		    			<h:commandButton value="In den Warenkorb" action="#{warenkorb.neu(wein, anz)}"/>
+		    			<h:commandButton value="In den Warenkorb" styleClass="btn btn-default" action="#{warenkorb.neu(wein, anz)}"/>
 		    		</h:column>
 		    	</h:dataTable>
 		    </div>
 	    </h:form>
 	    
+	    <br/>
+	    <br/>
 	</ui:define>
 </ui:composition>
 </html>

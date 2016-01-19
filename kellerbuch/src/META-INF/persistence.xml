@@ -5,6 +5,7 @@
 		<class>kellerbuch.fachlogik.Rechnung</class>
 		<class>kellerbuch.fachlogik.Rechnungspositionen</class>
 		<class>kellerbuch.fachlogik.Weine</class>
+		<class>kellerbuch.fachlogik.Login</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/kellerbuch"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

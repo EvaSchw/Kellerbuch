@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import kellerbuch.fachlogik.Kunde;
+import kellerbuch.fachlogik.Login;
 import kellerbuch.fachlogik.Rechnung;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
@@ -64,6 +65,19 @@ public class WinzerbetriebDB extends Winzerbetrieb
 		catch (Exception e)
 		{
 			throw new Exception("Fehler beim Abrufen der Rechnungen", e);
+		}
+	}
+	
+	public List<Login> getLoginliste() throws Exception
+	{
+		try
+		{
+			TypedQuery<Login> query = em.createNamedQuery("Login.findAll", Login.class);
+			return query.getResultList();
+		}
+		catch (Exception e)
+		{
+			throw new Exception("Fehler beim Aufrufen der LoginDaten", e);
 		}
 	}
 	

@@ -14,6 +14,7 @@ public class Kunde
 	@Column(name = "k_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int kundennr;
+	
 	@Column(name = "k_firma")
 	private String firma;
 	@Column(name = "k_nachname")
