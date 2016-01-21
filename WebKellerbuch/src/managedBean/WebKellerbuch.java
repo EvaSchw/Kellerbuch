@@ -6,7 +6,9 @@ import javax.faces.bean.*;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.swing.JOptionPane;
 
+import kellerbuch.fachlogik.Login;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 import kellerbuch.persistence.WinzerbetriebDB;
@@ -15,7 +17,6 @@ import kellerbuch.persistence.WinzerbetriebDB;
 @ManagedBean(name="kellerbuch", eager=true)
 public class WebKellerbuch extends WinzerbetriebDB implements Converter
 {
-	private String email;
 	private int anzahl;
 	
 	public int getAnzahl()
@@ -27,16 +28,10 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 	{
 		this.anzahl = anzahl;
 	}
-
-	public String getEmail()
-	{
-		return this.email;
-	}
 	
 	public WebKellerbuch() throws Exception
 	{
 		super();
-		this.email = "schwanzelberger@winzerhof-drozze.at";
 	}
 
 	@Override
@@ -59,5 +54,29 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 	{
 		setAnzahl(1);
 		return super.getWeinliste();
+	}
+	
+	public Login anmeldungPruefen(String user, String pw)
+	{
+		try
+		{
+			for(Login l: getLoginliste())
+			{
+				if(l.getUsername().equals(user) && l.getPasswd().equals(pw))
+				{
+					return l;
+				}
+				else
+				{
+					throw new Exception("User und/oder Passwort stimmen nicht überein!");
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		return null;
 	}
 }

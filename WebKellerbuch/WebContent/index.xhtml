@@ -10,7 +10,6 @@
 <ui:composition template="/vorlage/vorlage.xhtml">
 	<ui:define name="title">Kellerbuch Schwanzelberger | Startseite</ui:define>
 	<ui:define name="content">
-	    <br/>
 	    <h:form>
 		    <div id="weintable">
 		    	<h:dataTable value="#{kellerbuch.weinliste}" var="wein" styleClass="table table-hover">
@@ -35,6 +34,10 @@
 		    		</h:column>
 		    	</h:dataTable>
 		    </div>
+		    <br/>
+		    <!-- Verbindung zum Warenkorb herstellen -->
+		    <!--  <h:commandLink value="Zum Warenkorb" styleClass="btn btn-default" action="href:"http://localhost:8080/WebKellerbuch/faces/warenkorb.xhtml""/>
+	    -->
 	    </h:form>
 	    
 	    <br/>
