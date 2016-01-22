@@ -12,32 +12,31 @@
 	<ui:define name="content">
 	    <h:form>
 		    <div id="weintable">
-		    	<h:dataTable value="#{kellerbuch.weinliste}" var="wein" styleClass="table table-hover">
+		    	<h:dataTable value="#{weinliste.fuelleListe()}" var="pos" styleClass="table table-hover">
 		    		<h:column>
 		    			<f:facet name="header">Weinbezeichnung</f:facet>
-		    			#{wein.bezeichnung} #{wein.jahrgang}
+		    			#{pos.wein.bezeichnung} #{pos.wein.jahrgang}
 		    		</h:column>
 		    		<h:column id="Preis">
 		    			<f:facet name="header">Preis/Flasche</f:facet>
-		    			#{wein.preis}
+		    			#{pos.wein.preis} EURO
 		    		</h:column>
 		    		<h:column id="Menge">
 		    			<f:facet name="header">Menge</f:facet>
-		    			<h:inputText>
+		    			<h:inputText value="#{pos.menge}">
 		    				<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
 		    				<f:passThroughAttribute name="min" value="1"></f:passThroughAttribute>
 		    			</h:inputText>
 		    		</h:column>
 		    		<h:column>
-		    		<!-- Mit Anzahl übergeben funktioniert noch nicht!!! -->
-		    			<h:commandButton value="In den Warenkorb" styleClass="btn btn-default" action="#{warenkorb.neu(wein, anz)}"/>
+		    			<h:commandButton value="In den Warenkorb" styleClass="btn btn-default" action="#{warenkorb.neu(pos)}"/>
 		    		</h:column>
 		    	</h:dataTable>
 		    </div>
 		    <br/>
-		    <!-- Verbindung zum Warenkorb herstellen -->
-		    <!--  <h:commandLink value="Zum Warenkorb" styleClass="btn btn-default" action="href:"http://localhost:8080/WebKellerbuch/faces/warenkorb.xhtml""/>
-	    -->
+		    <h:link value="Zum Warenkorb" styleClass="btn btn-success">
+		    	<f:passThroughAttribute name="href" value="/WebKellerbuch/faces/bestellung/warenkorb.xhtml"/>
+		    </h:link>
 	    </h:form>
 	    
 	    <br/>

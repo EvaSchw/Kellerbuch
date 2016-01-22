@@ -48,6 +48,11 @@ public class Rechnungspositionen
 		return menge;
 	}
 	
+	public void setMenge(int menge)
+	{
+		this.menge = menge;
+	}
+	
 	public Rechnung getRechnung()
 	{
 		return rechnung;

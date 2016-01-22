@@ -20,11 +20,11 @@
     <param-value>resources.application</param-value>
   </context-param>
   <context-param>
-  	<description>
+    <description>
   		Der Projektstatus Development erleichtert die Entwicklung (zusätzliche Fehlermeldungen, weniger Caching, ...).
   	</description>
-  	<param-name>javax.faces.PROJECT_STAGE</param-name>
-  	<param-value>Development</param-value>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
   </context-param>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>

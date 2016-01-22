@@ -20,6 +20,16 @@ public class WarenkorbBean
 		warenListe = new ArrayList<Rechnungspositionen>();
 	}
 
+	public List<Rechnungspositionen> getWarenListe()
+	{
+		return warenListe;
+	}
+
+	public void setWarenListe(List<Rechnungspositionen> warenListe)
+	{
+		this.warenListe = warenListe;
+	}
+
 	public void neu(Rechnungspositionen neu) throws Exception
 	{
 		if(neu != null)

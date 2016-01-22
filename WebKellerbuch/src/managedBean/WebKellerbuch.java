@@ -1,5 +1,6 @@
 package managedBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.*;
@@ -9,6 +10,7 @@ import javax.faces.convert.Converter;
 import javax.swing.JOptionPane;
 
 import kellerbuch.fachlogik.Login;
+import kellerbuch.fachlogik.Rechnungspositionen;
 import kellerbuch.fachlogik.Weine;
 import kellerbuch.fachlogik.Winzerbetrieb;
 import kellerbuch.persistence.WinzerbetriebDB;
@@ -17,17 +19,6 @@ import kellerbuch.persistence.WinzerbetriebDB;
 @ManagedBean(name="kellerbuch", eager=true)
 public class WebKellerbuch extends WinzerbetriebDB implements Converter
 {
-	private int anzahl;
-	
-	public int getAnzahl()
-	{
-		return anzahl;
-	}
-
-	public void setAnzahl(int anzahl)
-	{
-		this.anzahl = anzahl;
-	}
 	
 	public WebKellerbuch() throws Exception
 	{
@@ -52,9 +43,9 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 	@Override
 	public List<Weine> getWeinliste() throws Exception
 	{
-		setAnzahl(1);
 		return super.getWeinliste();
 	}
+	
 	
 	public Login anmeldungPruefen(String user, String pw)
 	{
@@ -65,10 +56,6 @@ public class WebKellerbuch extends WinzerbetriebDB implements Converter
 				if(l.getUsername().equals(user) && l.getPasswd().equals(pw))
 				{
 					return l;
-				}
-				else
-				{
-					throw new Exception("User und/oder Passwort stimmen nicht überein!");
 				}
 			}
 		}

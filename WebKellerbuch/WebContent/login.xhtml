@@ -14,18 +14,16 @@
 	    <h:form>
 	    	<div class="form-group">
     			<label for="username">Username:</label>
-    			<h:inputText name="user" class="form-control" id="user" p:placeholder="Ihr Username" />
+    			<h:inputText value="#{loginBean.username}" name="user" class="form-control" id="user" p:placeholder="Ihr Username" />
   			</div>
   			
  			<div class="form-group">
     			<label for="password">Passwort:</label>
-    			<h:inputSecret name="password" class="form-control" id="password" p:placeholder="Ihr Passwort"/>
+    			<h:inputSecret value="#{loginBean.passwd}" name="password" class="form-control" id="password" p:placeholder="Ihr Passwort"/>
   			</div>
-  			<!-- Weiß nicht genau, wie ich die Anmeldeaktion erstellen soll -->
-  			<h:commandButton styleClass="btn btn-default" value="Anmelden" action="/WebKellerbuch/LoginServlet" method="post"/>
-  			<!-- LoginServlet und anmeldungPruefen erstellen -->
+  			<h:commandButton styleClass="btn btn-default" value="Anmelden" action="#{loginBean.validateLogin()}" method="post"/>
   			<br/>
-  			<br/>
+  			<br/> 
   			<label for="info">Sollten Sie noch keinen Usernamen und Passwort besitzen, so schreiben Sie uns!</label>
   			<br/>
   			<h:outputLink value="mailto:schwanzelberger@winzerhof-drozze.at">
