@@ -21,6 +21,9 @@
 		    		<f:facet name="header">Menge des Weines</f:facet>
 		    		#{waren.menge}
 		    	</h:column>
+		    	<h:column>
+		    		<h:commandButton value="Wein wieder löschen?" styleClass="btn btn-default" action="#{warenkorb.loschen(waren)}"/>
+		    	</h:column>
 	    	</h:dataTable>
 	    	<br/>
 	    	<h:link value="Zurück zum Bestellen" styleClass="btn btn-success">

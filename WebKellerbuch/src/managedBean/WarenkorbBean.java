@@ -49,6 +49,26 @@ public class WarenkorbBean
 		}
 	}
 	
+	public void loschen(Rechnungspositionen pos) throws Exception
+	{
+		if(istinListe(pos))
+			warenListe.remove(pos);
+		else
+			throw new Exception("Diese Position ist nicht vorhanden!");
+	}
+	
+	public boolean istinListe(Rechnungspositionen pos)
+	{
+		for(Rechnungspositionen p: warenListe)
+		{
+			if(p.getWein().getId() == pos.getWein().getId())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void neu(Weine wein, int anzahl) throws Exception
 	{
 		if(wein != null)
